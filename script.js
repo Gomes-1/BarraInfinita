@@ -24,7 +24,7 @@ function calcularE() {
   const parte2 = `\\[k = \\frac{1}{4 \\pi \\varepsilon_0}\\]`;
 
   // Parte 3 da fórmula
-  const E = (2 * k * lambda / y) * (L / Math.sqrt(4 * y**2 + L**2));
+  const E = (2 * k * lambda / y) * (L / Math.sqrt(4 * y*2 + L*2));
   const parte3 = `\\[E = \\frac{2 \\cdot ${k.toFixed(5)} \\cdot ${lambda}}{${y}} \\cdot \\frac{${L}}{\\sqrt{4 \\cdot ${y}^2 + ${L}^2}} = ${E.toExponential(2)} \\, \\text{V/m}\\]`;
 
   const resultadoDiv = document.getElementById('resultado');
@@ -53,7 +53,7 @@ function mostrarPassoAPasso() {
 
   const k = calcularK(epsilon);
   const passoAPassoDiv = document.getElementById('passoAPasso');
-
+  
   // Cria a string com o cálculo passo a passo
   const passoAPasso = `
     <p>Passo 1: Calcule o valor de k</p>
