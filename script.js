@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
   };
 });
 
+function converterParaNotacao10x(numero) {
+  let notacaoCientifica = numero.toExponential().split('e');
+  let base = parseFloat(notacaoCientifica[0]);
+  let expoente = parseInt(notacaoCientifica[1]);
+
+  return `${base.toFixed(2)} \\cdot 10^{${expoente}}`;
+}
+
 function calcularE() {
   const lambda = parseFloat(document.getElementById('lambda').value);
   const y = parseFloat(document.getElementById('y').value);
@@ -25,7 +33,7 @@ function calcularE() {
 
   // Parte 3 da fórmula
   const E = (2 * k * lambda / y) * (L / Math.sqrt(4 * y*2 + L*2));
-  const parte3 = `\\[E = \\frac{2 \\cdot ${k.toFixed(5)} \\cdot ${lambda}}{${y}} \\cdot \\frac{${L}}{\\sqrt{4 \\cdot ${y}^2 + ${L}^2}} = ${E.toExponential(2)} \\, \\text{V/m}\\]`;
+  const parte3 = `\\[E = \\frac{2 \\cdot ${k.toFixed(5)} \\cdot ${lambda}}{${y}} \\cdot \\frac{${L}}{\\sqrt{4 \\cdot ${y}^2 + ${L}^2}} = ${converterParaNotacao10x(E)} \\, \\text{V/m}\\]`;
 
   const resultadoDiv = document.getElementById('resultado');
 
@@ -53,7 +61,7 @@ function mostrarPassoAPasso() {
 
   const k = calcularK(epsilon);
   const passoAPassoDiv = document.getElementById('passoAPasso');
-  
+
   // Cria a string com o cálculo passo a passo
   const passoAPasso = `
     <p>Passo 1: Calcule o valor de k</p>
@@ -78,7 +86,7 @@ function mostrarPassoAPasso() {
     <p>Calcule a integral considerando a distribuição de carga ao longo da barra.</p>
 
     <p>Passo 7: Avalie a integral e obtenha o valor de \\(E\\)</p>
-    <p>\\[E = ${E.toExponential(2)} \\, \\text{V/m}\\]</p>
+    <p>\\[E = ${converterParaNotacao10x(E)} \\, \\text{V/m}\\]</p>
   `;
 
   passoAPassoDiv.innerHTML = passoAPasso;
